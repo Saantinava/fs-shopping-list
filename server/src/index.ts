@@ -19,7 +19,11 @@ app.get("/api/items", async (req, res) => {
     const items = await pool.query("SELECT * FROM items");
     res.json(items.rows);
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error('Unexpected error', err);
+    }
   }
 });
 
@@ -32,7 +36,11 @@ app.post("/api/items", async (req, res) => {
     );
     res.json(newItem.rows[0]);
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error('Unexpected error', err);
+    }
   }
 });
 
@@ -46,7 +54,11 @@ app.put("/api/items/:id", async (req, res) => {
     );
     res.json(updateItem.rows[0]);
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error('Unexpected error', err);
+    }
   }
 });
 
@@ -56,7 +68,11 @@ app.delete("/api/items/:id", async (req, res) => {
     await pool.query("DELETE FROM items WHERE id = $1", [id]);
     res.json({ message: "Item deleted" });
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error('Unexpected error', err);
+    }
   }
 });
 
