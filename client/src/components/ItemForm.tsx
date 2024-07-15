@@ -1,18 +1,16 @@
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItemRequest, Item } from '../actions/itemActions';
+import { PrimaryCTA, SecondaryCTA } from './ItemList';
 
-const useStyles = makeStyles({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
+const FormContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 const ItemForm: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const [item, setItem] = React.useState<Partial<Item>>({ name: '', description: '', quantity: 0 });
 
@@ -28,39 +26,43 @@ const ItemForm: React.FC = () => {
   return (
     <Dialog open={true}>
       <DialogTitle>Add an Item</DialogTitle>
-      <DialogContent className={classes.form}>
-        <TextField
-          name="name"
-          label="Item Name"
-          value={item.name}
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          name="description"
-          label="Description"
-          value={item.description}
-          onChange={handleChange}
-          multiline
-          rows={4}
-          required
-        />
-        <TextField
-          name="quantity"
-          label="How many?"
-          type="number"
-          value={item.quantity}
-          onChange={handleChange}
-          required
-        />
+      <DialogContent>
+        <FormContainer>
+          <TextField
+            name="name"
+            label="Item Name"
+            value={item.name}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+          <TextField
+            name="description"
+            label="Description"
+            value={item.description}
+            onChange={handleChange}
+            multiline
+            rows={4}
+            fullWidth
+          />
+          <TextField
+            name="quantity"
+            label="How many?"
+            type="number"
+            value={item.quantity}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+        </FormContainer>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleSubmit} color="primary">
+        <PrimaryCTA onClick={handleSubmit} color="primary">
           Add Task
-        </Button>
-        <Button onClick={() => {}} color="primary">
+        </PrimaryCTA>
+        <SecondaryCTA onClick={() => {}} color="primary">
           Cancel
-        </Button>
+        </SecondaryCTA>
       </DialogActions>
     </Dialog>
   );

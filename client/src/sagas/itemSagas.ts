@@ -18,7 +18,7 @@ import {
 
 function* fetchItems() {
     try {
-      const response: { data: Item[] } = yield call(axios.get, "localhost:5001/api/items");
+      const response: { data: Item[] } = yield call(axios.get, "/api/items");
       yield put(fetchItemsSuccess(response.data));
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -31,7 +31,7 @@ function* fetchItems() {
   
   function* addItem(action: { type: typeof ADD_ITEM_REQUEST; payload: Item }) {
     try {
-      const response: { data: Item } = yield call(axios.post, "localhost:5001/api/items", action.payload);
+      const response: { data: Item } = yield call(axios.post, "/api/items", action.payload);
       yield put(addItemSuccess(response.data));
     } catch (error: unknown) {
       if (error instanceof Error) {

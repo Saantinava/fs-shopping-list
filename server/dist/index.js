@@ -47,6 +47,7 @@ app.post('/api/items', (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { name, description, quantity } = req.body;
         const newItem = yield pool.query('INSERT INTO items (name, description, quantity) VALUES ($1, $2, $3) RETURNING *', [name, description, quantity]);
+        console.log("Created item with: name", name, "description", description, "quantity", quantity);
         res.json(newItem.rows[0]);
     }
     catch (err) {

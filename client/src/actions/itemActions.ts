@@ -12,7 +12,13 @@ export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
 export const DELETE_ITEM_FAILURE = 'DELETE_ITEM_FAILURE';
 
 export interface Item {
-  id?: number;
+  id: number;
+  name: string;
+  description: string;
+  quantity: number;
+}
+
+export interface ItemInputData {
   name: string;
   description: string;
   quantity: number;
@@ -30,8 +36,8 @@ export const fetchItemsRequest = () => ({ type: FETCH_ITEMS_REQUEST });
 export const fetchItemsSuccess = (items: Item[]) => ({ type: FETCH_ITEMS_SUCCESS, payload: { items } });
 export const fetchItemsFailure = (error: string) => ({ type: FETCH_ITEMS_FAILURE, payload: { error } });
 
-export const addItemRequest = (item: Item) => ({ type: ADD_ITEM_REQUEST, payload: item });
-export const addItemSuccess = (item: Item) => ({ type: ADD_ITEM_SUCCESS, payload: item });
+export const addItemRequest = (item: ItemInputData) => ({ type: ADD_ITEM_REQUEST, payload: item });
+export const addItemSuccess = (item: ItemInputData) => ({ type: ADD_ITEM_SUCCESS, payload: item });
 export const addItemFailure = (error: string) => ({ type: ADD_ITEM_FAILURE, payload: { error } });
 
 export const updateItemRequest = (item: Item) => ({ type: UPDATE_ITEM_REQUEST, payload: item });

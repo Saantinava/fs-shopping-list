@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Load NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 # Check if NVM is installed
 if ! command -v nvm &> /dev/null
 then
@@ -56,11 +63,11 @@ EOF
 
 echo "PostgreSQL user and database created."
 
-# Install dependencies
+# Install dependencies with --legacy-peer-deps flag
 echo "Installing dependencies..."
-npm install
-npm --prefix server install
-npm --prefix client install
+npm install --legacy-peer-deps
+npm --prefix server install --legacy-peer-deps
+npm --prefix client install --legacy-peer-deps
 
 echo "Dependencies installed."
 
