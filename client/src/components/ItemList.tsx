@@ -115,7 +115,7 @@ const ItemList: React.FC = () => {
     return (
       <Card className={classes.root}>
         <CardContent className={classes.emptyList}>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h2" style={{ margin: "2rem", color: "grey"}}>
             Your shopping list is empty :(
           </Typography>
           <AddItem label="Add your first item" />

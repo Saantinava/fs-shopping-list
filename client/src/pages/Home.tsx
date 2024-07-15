@@ -23,7 +23,8 @@ const Header = styled.header`
 `;
 
 const Body = styled.body`
-  padding: 1rem 5rem;
+  padding: 4rem 5rem;
+  background: none;
 `;
 
 const Title = styled.div`
@@ -47,9 +48,12 @@ const Home = () => {
     <Container>
       <Header>SHOPPING LIST</Header>
       <Body>
-        <Title>
-          <TitleLabel>Your Items</TitleLabel>
-          {items?.length > 0 && <AddItem label="Add item" />}</Title>
+        {items?.length > 0 && (
+          <Title>
+            <TitleLabel>Your Items</TitleLabel>
+            <AddItem label="Add item" />
+          </Title>
+        )}
         <ItemList />
       </Body>
     </Container>

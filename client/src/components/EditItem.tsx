@@ -2,13 +2,10 @@ import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateItemRequest } from "../actions/itemActions";
 import {
-  Button,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Checkbox,
-  FormControlLabel,
   DialogContentText,
   FormControl,
   InputLabel,
