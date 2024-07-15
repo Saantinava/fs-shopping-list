@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js v18 or later
+- Node.js v18 or later (managed via NVM)
 - PostgreSQL
 
 ## Setup
@@ -14,12 +14,29 @@ git clone https://github.com/Saantinava/fs-shopping-list
 cd fs-shopping-list
 ```
 
-### 2. Run the Setup Script
+### 2. Install NVM and Use Node.js Version
+
+Ensure you have NVM installed. If not, install it:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.bashrc  # or ~/.zshrc, depending on your shell
+```
+
+Install and use the Node.js version specified in `.nvmrc`:
+
+```bash
+nvm install
+nvm use
+```
+
+### 3. Run the Setup Script
 
 To simplify the setup process, you can run the provided `setup.sh` script. This script will:
 
 - Create a PostgreSQL user and database
 - Install all dependencies
+- Build the server
 - Start the server and client apps
 
 #### macOS and Linux
@@ -41,6 +58,8 @@ For Windows users, you might need to run the commands manually as the script is 
 
 ```bash
 npm install
+npm --prefix server install
+npm --prefix client install
 ```
 
 #### 2. Set Up PostgreSQL
@@ -84,7 +103,9 @@ npm install
      - Use the PostgreSQL app or start the service from the Services application.
 
    - **macOS:**
-     - If installed via Homebrew: `brew services start postgresql`
+     - If installed via Homebrew: `brew
+
+ services start postgresql`
 
    - **Linux:**
      - Systemd: `sudo systemctl start postgresql`
@@ -107,7 +128,7 @@ npm install
 
 #### 3. Update the Server Configuration
 
-Update the PostgreSQL connection configuration in `packages/server/src/index.ts`:
+Update the PostgreSQL connection configuration in `server/src/index.ts`:
 
 ```typescript
 const pool = new Pool({
@@ -119,7 +140,7 @@ const pool = new Pool({
 });
 ```
 
-#### 4. Start the Application
+#### 4. Build and Start the Application
 
 To start both server and client apps, run:
 
@@ -131,8 +152,8 @@ This command will start the server and client applications concurrently.
 
 ## Project Structure
 
-- **Client (Frontend):** `packages/client`
-- **Server (Backend):** `packages/server`
+- **Client (Frontend):** `client`
+- **Server (Backend):** `server`
 
 ## Development
 
@@ -141,7 +162,7 @@ This command will start the server and client applications concurrently.
   Navigate to the client directory and start the client app:
 
   ```bash
-  cd packages/client
+  cd client
   npm start
   ```
 
@@ -150,7 +171,7 @@ This command will start the server and client applications concurrently.
   Navigate to the server directory and start the server app:
 
   ```bash
-  cd packages/server
+  cd server
   npm run dev
   ```
 
@@ -165,13 +186,13 @@ This command will start the server and client applications concurrently.
 - **Start client only:**
 
   ```bash
-  npm --prefix packages/client start
+  npm --prefix client start
   ```
 
 - **Start server only:**
 
   ```bash
-  npm --prefix packages/server run dev
+  npm --prefix server run dev
   ```
 
 ## Troubleshooting
@@ -182,3 +203,21 @@ This command will start the server and client applications concurrently.
 
 By following these steps, you should have your Shopping List App up and running at localhost:3000
 ```
+
+### Additional Steps
+
+1. **Ensure that the `.nvmrc` file is present at the root of your project:**
+
+   ```plaintext
+   v18
+   ```
+
+2. **Commit all changes to your repository:**
+
+   ```bash
+   git add .
+   git commit -m "Update setup script, package.json files, and README for easier setup"
+   git push
+   ```
+
+By following these steps, anyone cloning your repository should be able to set up and run the application easily.
