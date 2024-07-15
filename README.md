@@ -132,10 +132,10 @@ Update the PostgreSQL connection configuration in `server/src/index.ts`:
 
 ```typescript
 const pool = new Pool({
-  user: 'admin', // your database user
+  user: 'admin', 
   host: 'localhost',
   database: 'shopping_list',
-  password: 'password', // your database password
+  password: 'password', 
   port: 5432,
 });
 ```
@@ -203,21 +203,3 @@ This command will start the server and client applications concurrently.
 
 By following these steps, you should have your Shopping List App up and running at localhost:3000
 ```
-
-### Additional Steps
-
-1. **Ensure that the `.nvmrc` file is present at the root of your project:**
-
-   ```plaintext
-   v18
-   ```
-
-2. **Commit all changes to your repository:**
-
-   ```bash
-   git add .
-   git commit -m "Update setup script, package.json files, and README for easier setup"
-   git push
-   ```
-
-By following these steps, anyone cloning your repository should be able to set up and run the application easily.
